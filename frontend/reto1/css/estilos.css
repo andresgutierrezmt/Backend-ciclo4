@@ -1,0 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+form{
+    margin: 10px 0px;
+}
+
+
+
+#titulo{
+    padding:10px;
+    border-radius: 4px;
+    margin-top: 30px;
+}
+
+#texto{
+    margin-top: 30px;
+    text-align: center;
+}
+
+#boton{
+    margin: 20px 0px;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (min-width: 1200px) {
+    #container_form{
+        width: 20%;
+    }
+}
