@@ -41,7 +41,7 @@ public class UserService {
     public User Autenticar (String email, String password){
         Optional<User> user = repository.AutenticarUsuario(email, password);
         if(user.isEmpty()){
-            return new User(email,password,"NO DEFINIDO");
+            return new User(email, password, "NO DEFINIDO");
         } else {
             return user.get();
         }
