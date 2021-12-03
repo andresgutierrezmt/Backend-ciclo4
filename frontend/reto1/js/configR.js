@@ -8,23 +8,23 @@ window.addEventListener('load',()=>{
             password_conf: document.querySelector("#pwd-confirm").value,
             terminos: document.querySelector("#terminos").checked
         }
-        if(validarRegistro(newUser)){
-            let registrar = {
-                user_name: newUser.nombre,
-                user_email: newUser.email,
-                user_password: newUser.password
-            }
-            registrarUsuario(registrar);
-        }else{
-            console.log("error");
-        }
+        validarRegistro(newUser)
     });
 });
 
-/* async function registrarUsuario(registrar){
-    response = await fetch("http://144.22.58.188:8080/api/user/new",{
-        headers : {
-            Content-Type: "application/json"
-        }
-    });
-} */
+async function registrarUsuario(registrar){
+    try {
+        response = await fetch("http://144.22.58.188:8080/api/user/new",{
+            method: 'POST',
+            headers: {
+                'content-Type': 'application/json'
+            },
+            body: JSON.stringify(registrar)
+        });
+        document.location = "login.html"
+        alert("registro satisfactorio");
+    } catch (error) {
+        console.log(error);
+        alert("Ha ocurrido un error en el servidor :(")
+    }
+}

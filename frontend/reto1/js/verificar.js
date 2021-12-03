@@ -16,21 +16,34 @@ function verificar(){
 }
 
 function validarRegistro(newUser){
-    if(newUser.nombre != "" || newUser.email != "" || newUser.password != "" || newUser.password_conf != ""){
+    if(newUser.nombre != "" && newUser.email != "" && newUser.password != "" && newUser.password_conf != ""){
         if(newUser.password == newUser.password_conf){
             if (newUser.terminos) {
-                return true;
+                autenticacion(newUser)
             } else {
                 alert("valide los terminos y condiciones")
-                return false;
             }
         }
         else{
             alert("las claves no coinciden");
-            return false;
         }
     }else{
         alert("Campos vacios verifique que esten todos llenos")
-        return false;
     }
+}
+
+async function autenticacion(newUser){
+    response = await fetch("http://144.22.58.188:8080/api/user/"+newUser.email);
+    jsonresponse = await response.json();
+    if (jsonresponse) {
+        alert("El email ya esta en uso")
+    } else {
+        let registrar = {
+            name: newUser.nombre,
+            email: newUser.email,
+            password: newUser.password
+        }
+        registrarUsuario(registrar)
+    }
+    console.log(jsonresponse)
 }
