@@ -17,7 +17,6 @@ function bienvenida(){
 function config(){
     cerrarS = document.querySelector("#cerrarS");
     cerrarS.addEventListener('click', ()=>{
-        alert("vuelva pronto")
         localStorage.clear();
         document.location = "login.html"
     })

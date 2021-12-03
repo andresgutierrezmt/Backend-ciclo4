@@ -1,5 +1,13 @@
 'use strict'
 window.addEventListener('load',()=>{
+    if (localStorage.getItem('name')) {
+        document.location="bienvenido.html"
+    } else {
+        configlogin();
+    }
+});
+
+function configlogin(){
     let boton = document.querySelector("#boton");
     boton.addEventListener('click',()=>{
         if(verificar()){
@@ -12,7 +20,7 @@ window.addEventListener('load',()=>{
             console.log("error")
         }
     });
-});
+}
 
 async function Autenticar(usuario){
     try {
@@ -22,7 +30,6 @@ async function Autenticar(usuario){
             alert("Usuario no registrado, registrese para poder ingresar al sistema")
         }else{
             localStorage.setItem("name",res.name);
-            alert("Bienvenido")
             document.location = "bienvenido.html"
         }
     } catch (error) {
