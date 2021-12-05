@@ -2,16 +2,16 @@ window.addEventListener('load',()=>{
     config();
     if(localStorage.getItem('name')){
         bienvenida();
-        /* document.location = "login.html"; */
     }else{
         document.location = "login.html";
-        /* bienvenida(); */
     }
 });
 
 function bienvenida(){
     let encabezado = document.querySelector("#nombre");
+    let menu_usuario = document.querySelector("#UserMenu");
     encabezado.innerHTML = localStorage.getItem("name");
+    menu_usuario.innerHTML = localStorage.getItem("name");
 }
 
 function config(){
