@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Author: IYMH - Andres C Gutierrez Gonzalez
+ */
+
 @Service
 public class UserService {
 
@@ -18,20 +22,17 @@ public class UserService {
         return repository.findAll();
     }
 
-    public Optional<User> getUser(String id){
+    public Optional<User> getUser(int id){
         return repository.getUser(id);
     }
 
     public User registrar(User user){
-        if(user.getId().isEmpty()){
-            if(repository.ExistenciaEmail(user.getEmail())){
+            if(repository.ExistenciaEmail(user.getEmail())) {
                 return user;
             }
-            else
+            else{
                 return repository.save(user);
-        }
-        else
-            return user;
+            }
     }
 
     public boolean ExistenciaEmail(String email){
@@ -41,9 +42,55 @@ public class UserService {
     public User Autenticar (String email, String password){
         Optional<User> user = repository.AutenticarUsuario(email, password);
         if(user.isEmpty()){
-            return new User(email, password, "NO DEFINIDO");
+            return new User(null, null, null, null, null, null, null, null, null);
         } else {
             return user.get();
         }
     }
+
+    public User update(User user) {
+        if (user.getId() != null) {
+            Optional<User> userDb = repository.getUser(user.getId());
+            if (!userDb.isEmpty()) {
+                if (user.getIdentification() != null) {
+                    userDb.get().setIdentification(user.getIdentification());
+                }
+                if (user.getName() != null) {
+                    userDb.get().setName(user.getName());
+                }
+                if (user.getAddress() != null) {
+                    userDb.get().setAddress(user.getAddress());
+                }
+                if (user.getCellPhone() != null) {
+                    userDb.get().setCellPhone(user.getCellPhone());
+                }
+                if (user.getEmail() != null) {
+                    userDb.get().setEmail(user.getEmail());
+                }
+                if (user.getPassword() != null) {
+                    userDb.get().setPassword(user.getPassword());
+                }
+                if (user.getZone() != null) {
+                    userDb.get().setZone(user.getZone());
+                }
+                repository.update(userDb.get());
+                return userDb.get();
+            } else {
+                return user;
+            }
+        } else {
+            return user;
+        }
+    }
+
+    public boolean delete(int userid){
+        Optional<User> eliminar= repository.getUser(userid);
+        if(!eliminar.isEmpty()){
+            repository.delete(eliminar.get());
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

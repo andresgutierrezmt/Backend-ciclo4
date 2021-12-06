@@ -17,7 +17,7 @@ public class UserRepository {
         return (List<User>) crud.findAll();
     }
 
-    public Optional<User> getUser(String id){
+    public Optional<User> getUser(int id) {
         return crud.findById(id);
     }
 
@@ -41,5 +41,13 @@ public class UserRepository {
 
     public User save(User user){
         return crud.save(user);
+    }
+
+    public void update(User user){
+        crud.save(user);
+    }
+
+    public void delete(User user){
+        crud.delete(user);
     }
 }

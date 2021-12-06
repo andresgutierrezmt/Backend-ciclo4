@@ -13,23 +13,36 @@ import java.io.Serializable;
 
 @Data
 @RequiredArgsConstructor
+/*@NoArgsConstructor*/
 @AllArgsConstructor
-@NoArgsConstructor
 @Document(collection= "user") //Como vamos a nombrar nuestra tabla (Base de datos)
 public class User implements Serializable {
     @Id
-    private String id;
+    private Integer id;
 
-    @NonNull
-    @Field(name="user_email")
+    @Field(name="identification")
+    private String identification;
+
+    @Field(name="name")
+    private String name;
+
+    @Field(name="address")
+    private String address;
+
+    @Field(name="cellphone")
+    private String cellPhone;
+
+    @Field(name="email")
     private  String email;
 
-    @NonNull
-    @Field(name="user_password")
+    @Field(name="password")
     private String password;
 
-    @NonNull
-    @Field(name="user_name")
-    private String name;
+    @Field(name="zone")
+    private String zone;
+
+    @Field(name = "type")
+    private String type;
+
 }
 

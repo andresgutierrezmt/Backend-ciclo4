@@ -31,8 +31,20 @@ public class UserController {
         return service.Autenticar(email, password);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/emailexist/{email}")
     public boolean existeEmail(@PathVariable("email") String email){
         return  service.ExistenciaEmail(email);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User update(@RequestBody User user) {
+        return service.update(user);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id) {
+        return service.delete(id);
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import java.util.Optional;
 
-public interface UserCrudRepository extends MongoRepository<User,String>{
+public interface UserCrudRepository extends MongoRepository<User,Integer>{
     //consultas en mongodb @Query
     @Query("{email:?0}")
     Optional<User> findByEmail(String email);
