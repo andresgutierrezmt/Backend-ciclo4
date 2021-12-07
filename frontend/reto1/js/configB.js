@@ -1,5 +1,4 @@
 window.addEventListener('load',()=>{
-    config();
     if(localStorage.getItem('name')){
         bienvenida();
     }else{
@@ -9,15 +8,16 @@ window.addEventListener('load',()=>{
 
 function bienvenida(){
     let encabezado = document.querySelector("#nombre");
-    let menu_usuario = document.querySelector("#UserMenu");
+    let mensaje_jumbo = document.querySelector("#mensaje_jumbo");
     encabezado.innerHTML = localStorage.getItem("name");
-    menu_usuario.innerHTML = localStorage.getItem("name");
+    mensaje(mensaje_jumbo);
+    contentadd();
 }
 
-function config(){
-    cerrarS = document.querySelector("#cerrarS");
-    cerrarS.addEventListener('click', ()=>{
-        localStorage.clear();
-        document.location = "login.html"
-    })
+function mensaje(ms){
+    if(localStorage.getItem('type') == "ADMIN"){
+        ms.innerHTML = "bienvenido Administrador, recuerde que puede agregar nuevos miembros desde la pestaña (registrar miembro)"
+    }else{
+        ms.innerHTML = "bienvenido a deportive, es un gusto tenerte aqui :)"
+    }
 }
