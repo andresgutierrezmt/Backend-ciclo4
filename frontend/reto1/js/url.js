@@ -1,1 +1,1 @@
-const url = "192.168.0.18:8080"
+const url = "localhost:8080"
