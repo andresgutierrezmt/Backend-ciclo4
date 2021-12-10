@@ -12,6 +12,10 @@ public class SupplementsService {
     @Autowired
     SupplementRepository repository;
 
+    public boolean existenciaProducto(String referencia){
+        return repository.ExistenciaProducto(referencia);
+    }
+
     public List<Supplements> getAll() {
         return repository.getAll();
     }

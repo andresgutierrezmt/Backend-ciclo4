@@ -23,7 +23,7 @@ function config(){
 }
 
 function configA(){
-    content = ` <li class="nav-item dropdown">
+    content = `  <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Miembros
                     </a>
@@ -31,13 +31,22 @@ function configA(){
                         <li><a class="dropdown-item" href="registro.html">Registrar miembro</a></li>
                         <li><a class="dropdown-item" href="miembros.html">Miembros</a></li>
                     </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Catalogo
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="registroP.html">Nuevo producto</a></li>
+                        <li><a class="dropdown-item" href="productos.html">productos</a></li>
+                    </ul>
                 </li>`
-    $("#crear").html(content);
+    document.querySelector("#crear").innerHTML=content;
 }
 
 function configB(){
     content = ` <li class="nav-item">
                     <a class="nav-link" href="#">Catalogo</a>
                 </li>`
-    $("#crear").html(content);
+    document.querySelector("#crear").innerHTML=content;
 }

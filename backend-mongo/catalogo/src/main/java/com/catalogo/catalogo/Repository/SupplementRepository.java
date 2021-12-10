@@ -13,6 +13,16 @@ public class SupplementRepository {
     @Autowired
     SupplementCrudRepository crud;
 
+    public boolean ExistenciaProducto(String referencia){
+        Optional<Supplements> producto = crud.findById(referencia);
+        if(producto.isEmpty()){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     public List<Supplements> getAll(){
         return (List<Supplements>) crud.findAll();
     }

@@ -35,8 +35,8 @@ function rellenar(user){
 }
 
 function config(){
-    boton1 = document.querySelector("#boton1");
-    boton2 = document.querySelector("#boton2");
+    let boton1 = document.querySelector("#boton1");
+    let boton2 = document.querySelector("#boton2");
 
     boton1.addEventListener('click',()=>{
         let Upser={

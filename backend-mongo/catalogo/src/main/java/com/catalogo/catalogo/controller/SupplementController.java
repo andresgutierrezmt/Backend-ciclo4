@@ -21,6 +21,11 @@ public class SupplementController {
         return service.getAll();
     }
 
+    @GetMapping("/productExists/{reference}")
+    public boolean productExists(@PathVariable("reference") String referencia){
+        return service.existenciaProducto(referencia);
+    }
+
     @GetMapping("/{reference}")
     public Optional<Supplements> getClothe(@PathVariable("reference") String reference) {
         return service.getClothe(reference);

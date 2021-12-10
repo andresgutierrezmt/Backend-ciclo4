@@ -135,8 +135,43 @@ async function enviar(actualizar){
         if (result.isConfirmed) {
             document.location = "miembros.html"
         }
-        })
+        });
     } catch (error) {
         alert("error de conexion servidor :C")
+    }
+}
+
+function validarP(producto){
+    if(producto.referencia != "" && producto.marca != "" && producto.categoria != "" && producto.objetivo != "" && producto.precio != "" && producto.cantidad != "" && producto.descripcion !="" ){
+        validarExistencia(producto);
+    }
+
+    else{
+        alert("Hay algun campo vacio. Rellene todos los campos");
+    }
+}
+
+async function validarExistencia(producto){
+    try {
+        response = await fetch("http://" + url +"/api/supplements/productExists/"+producto.referencia);
+        responseJSOM = await response.json();
+        if(responseJSOM){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'El producto ya existe registre otro',
+                footer: '<p>cambia el nombre del producto</p>'
+            })
+        }
+        else{
+            enviarProducto(producto);
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ocurrio un error al obtener los datos',
+            footer: '<p>hubo un error en el servidor (' +error+ ')</p>'
+        })
     }
 }
