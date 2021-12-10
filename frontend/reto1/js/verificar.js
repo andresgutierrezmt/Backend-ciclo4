@@ -142,7 +142,7 @@ async function enviar(actualizar){
 }
 
 function validarP(producto){
-    if(producto.referencia != "" && producto.marca != "" && producto.categoria != "" && producto.objetivo != "" && producto.precio != "" && producto.cantidad != "" && producto.descripcion !="" ){
+    if(producto.referencia != "" && producto.marca != "" && producto.categoria != "" && producto.objetivo != "" && producto.precio != "" && producto.cantidad != "" && producto.image != "" && producto.descripcion !="" ){
         validarExistencia(producto);
     }
 
@@ -171,7 +171,81 @@ async function validarExistencia(producto){
             icon: 'error',
             title: 'Oops...',
             text: 'Ocurrio un error al obtener los datos',
-            footer: '<p>hubo un error en el servidor (' +error+ ')</p>'
+            footer: '<p>hubo un error en el servidor </p>'
+        })
+    }
+}
+
+function verificar_actualizar_p(item_n){
+    if(item_n.reference != "" && item_n.brand != "" && item_n.category != "" && item_n.objetivo != "" && item_n.price != "" && item_n.quantity != "" && item_n.image != "" && item_n.description !="" ){
+        validarParaActualizar(item_n);
+    }
+
+    else{
+        alert("Hay algun campo vacio. Rellene todos los campos");
+    }
+}
+
+async function validarParaActualizar(item_n){
+    const item = JSON.parse(atob(localStorage.getItem("productoA")))
+    try {
+        response = await fetch("http://" + url +"/api/supplements/productExists/"+item_n.reference);
+        responseJSOM = await response.json();
+        if (item_n.reference == item.reference) {
+            Actualizar_producto(item_n);
+        } else {
+            if (responseJSOM) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No se ha podido actualizar el usuario',
+                    footer: '<p>La referencia ya existe elige otra o dejala igual</p>'
+                })
+            } else {
+                Actualizar_producto(item_n);
+            }
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error con el servidor :(',
+            footer: '<p>Ha ocurrido un error en el servidor </p>'
+        })
+    }
+}
+
+async function Actualizar_producto(actualizar){
+    objeto = JSON.stringify(actualizar);
+    alert(objeto)
+    try {
+        response = await fetch("http://"+url+"/api/supplements/update",{
+            method : 'PUT',
+            headers:{
+                'content-Type': 'application/json'
+            },
+            body: objeto
+        })
+
+    localStorage.getItem("producto_A",null);
+    Swal.fire({
+        title: 'Actualizacion',
+        text: "Los datos se han actualizado correctamente",
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'aceptar'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            document.location = "productos.html"
+        }
+        });
+
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error con el servidor :(',
+            footer: '<p>Ha ocurrido un error en el servidor </p>'
         })
     }
 }

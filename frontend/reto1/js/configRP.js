@@ -16,6 +16,7 @@ function inicio(){
             precio: document.querySelector("#price").value,
             cantidad: document.querySelector("#quantity").value,
             disponible: document.querySelector("#availability").value,
+            imagen : document.querySelector("#image").value,
             descripcion: document.querySelector("#description").value,
         }
         validarP(producto);
@@ -32,7 +33,7 @@ async function enviarProducto(producto){
         availability: producto.disponible,
         price: producto.precio,
         quantity: producto.cantidad,
-        photography: "none",
+        photography: producto.imagen,
     };
 
     objeto = JSON.stringify(objeto);
