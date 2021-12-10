@@ -37,8 +37,6 @@ async function enviarProducto(producto){
 
     objeto = JSON.stringify(objeto);
 
-    alert("enviare estos datos"+objeto);
-
     try {
         response = await fetch("http://" + url +"/api/supplements/new",{
             method: 'POST',
