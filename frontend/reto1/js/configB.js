@@ -15,9 +15,9 @@ function bienvenida(){
 }
 
 function mensaje(ms){
-    if(localStorage.getItem('type') == "ADMIN"){
+    if(localStorage.getItem('type') == ADMIN){
         ms.innerHTML = "bienvenido Administrador, recuerde que puede agregar nuevos miembros desde la pestaña (registrar miembro)"
-    }else{
-        ms.innerHTML = "bienvenido a deportive, es un gusto tenerte aqui :)"
+    }else if(localStorage.getItem('type') == ASSESOR){
+        ms.innerHTML = "bienvenido a deportive, eres Asesor:)"
     }
 }

@@ -1,4 +1,4 @@
-if(localStorage.getItem("type") != "ADMIN"){
+if(localStorage.getItem("type") != ADMIN){
     document.location = "login.html";
 }
 

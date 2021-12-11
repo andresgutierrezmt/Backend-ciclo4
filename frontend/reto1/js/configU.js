@@ -1,6 +1,6 @@
 'use strict'
 
-if(localStorage.getItem('idupdate') == null || localStorage.getItem("type") != "ADMIN"){
+if(localStorage.getItem('idupdate') == null || localStorage.getItem("type") != ADMIN){
     document.location = "bienvenido.html";
 }
 

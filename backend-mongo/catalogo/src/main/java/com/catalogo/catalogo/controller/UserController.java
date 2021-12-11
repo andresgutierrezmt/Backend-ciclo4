@@ -21,7 +21,7 @@ public class UserController {
         return service.getAll();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public Optional<User> getUser(@PathVariable("id") int id){
         return service.getUser(id);
     }

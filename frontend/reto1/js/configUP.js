@@ -1,4 +1,4 @@
-if(localStorage.getItem('productoA') == null || localStorage.getItem("type") != "ADMIN"){
+if(localStorage.getItem('productoA') == null || localStorage.getItem("type") != ADMIN){
     document.location = "bienvenido.html";
 }
 

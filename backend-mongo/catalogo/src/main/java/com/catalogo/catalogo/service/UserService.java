@@ -26,15 +26,6 @@ public class UserService {
         return repository.getUser(id);
     }
 
-    public User registrar(User user){
-            if(repository.ExistenciaEmail(user.getEmail())) {
-                return user;
-            }
-            else{
-                return repository.save(user);
-            }
-    }
-
     public boolean ExistenciaEmail(String email){
         return repository.ExistenciaEmail(email);
     }
@@ -42,21 +33,54 @@ public class UserService {
     public User Autenticar (String email, String password){
         Optional<User> user = repository.AutenticarUsuario(email, password);
         if(user.isEmpty()){
-            return new User(null, null, null, null, null, null, null, null, null);
+            return new User(null, null, null, null, null, null, null, null, null, null, null);
         } else {
             return user.get();
         }
     }
 
+    //Metodo para salvar un uuario sin colocar Id
+    public User registrar(User user){
+        Optional<User> UserMax= repository.UserIdMax();
+        if (user.getId() == null) {
+            if(UserMax.isEmpty()){
+                user.setId(1);
+            }else {
+                user.setId(UserMax.get().getId() + 1);
+            }
+        }
+        Optional<User>verificar = repository.getUser(user.getId());
+        if(verificar.isEmpty()){
+            if(!repository.ExistenciaEmail(user.getEmail())){
+                return repository.save(user);
+            }else {
+                return user;
+            }
+        }else {
+            return user;
+        }
+    }
+
     public User update(User user) {
-        if (user.getId() != null) {
-            Optional<User> userDb = repository.getUser(user.getId());
+        Optional<User> obtenerid = repository.getEmail(user.getEmail());
+
+        if(user.getId() == null){
+            user.setId(obtenerid.get().getId());
+        }
+
+        Optional<User> userDb = repository.getUser(user.getId());
             if (!userDb.isEmpty()) {
                 if (user.getIdentification() != null) {
                     userDb.get().setIdentification(user.getIdentification());
                 }
                 if (user.getName() != null) {
                     userDb.get().setName(user.getName());
+                }
+                if (user.getBirthtDay() != null) {
+                    userDb.get().setBirthtDay(user.getBirthtDay());
+                }
+                if (user.getMonthBirthtDay() != null) {
+                    userDb.get().setMonthBirthtDay(user.getMonthBirthtDay());
                 }
                 if (user.getAddress() != null) {
                     userDb.get().setAddress(user.getAddress());
@@ -73,14 +97,14 @@ public class UserService {
                 if (user.getZone() != null) {
                     userDb.get().setZone(user.getZone());
                 }
+                if (user.getType() != null) {
+                    userDb.get().setType(user.getType());
+                }
                 repository.update(userDb.get());
                 return userDb.get();
             } else {
                 return user;
             }
-        } else {
-            return user;
-        }
     }
 
     public boolean delete(int userid){

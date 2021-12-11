@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Crear una coleccion en mongo db
@@ -25,6 +26,12 @@ public class User implements Serializable {
 
     @Field(name="name")
     private String name;
+
+    @Field(name="Birth_Day")
+    private Date birthtDay;
+
+    @Field(name="Month_Birth_Day")
+    private String monthBirthtDay;
 
     @Field(name="address")
     private String address;

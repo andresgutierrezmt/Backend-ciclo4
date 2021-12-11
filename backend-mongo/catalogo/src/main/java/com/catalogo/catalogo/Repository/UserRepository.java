@@ -50,4 +50,8 @@ public class UserRepository {
     public void delete(User user){
         crud.delete(user);
     }
+
+    public Optional<User> UserIdMax(){
+        return crud.findTopByOrderByIdDesc();
+    }
 }

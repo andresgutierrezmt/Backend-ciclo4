@@ -1,8 +1,8 @@
 function contentadd(){
-    if(localStorage.getItem('type') == "ADMIN"){
+    if(localStorage.getItem('type') == ADMIN){
         configH();
         configA();
-    }else{
+    }else if(localStorage.getItem('type') == ASSESOR){
         configH();
         configB();
     }
@@ -45,8 +45,9 @@ function configA(){
 }
 
 function configB(){
-    content = ` <li class="nav-item">
+    content = ` <li class="nav-item d-flex">
                     <a class="nav-link" href="#">Catalogo</a>
+                    <a class="nav-link" href="ordenes.html">Ordenes</a>
                 </li>`
     document.querySelector("#crear").innerHTML=content;
 }
