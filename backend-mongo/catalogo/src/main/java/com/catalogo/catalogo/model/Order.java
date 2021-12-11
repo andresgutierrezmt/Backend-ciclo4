@@ -16,7 +16,7 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonPropertyOrder({"id","registerDay","Status","salesMan","products","quantities"})
+@JsonPropertyOrder({"id","registerDay","status","salesMan","products","quantities"})
 public class Order implements Serializable {
 
     public static String PENDING = "pendiente";
