@@ -257,7 +257,7 @@ function asignar(items) {
         const strobj = JSON.stringify(items[i]);
         if (items[i].availability) {
             options += `
-            <option id="option" onclick="muestra('${btoa(strobj)}');" value="${btoa(strobj)}">${items[i].brand + " " + items[i].category + " " + "(" + items[i].reference + ")"}</option>
+            <option id="option" data-obj="${btoa(strobj)}" value="${btoa(strobj)}">${items[i].brand + " " + items[i].category + " " + "(" + items[i].reference + ")"}</option>
             `;
         }
     }
@@ -301,7 +301,9 @@ function asignar(items) {
     });
 }
 
-function muestra(item) {
+function muestra(t) {
+    const item = t.selectedOptions[0].dataset.obj;
+    console.log(`item`,item);
     const items = JSON.parse(atob(item));
     document.querySelector("#cantidad").value = items.quantity;
     document.querySelector("#contenedor2").style.display = 'block';
