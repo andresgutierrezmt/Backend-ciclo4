@@ -197,7 +197,7 @@ async function validarParaActualizar(item_n){
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'No se ha podido actualizar el usuario',
+                    text: 'No se ha podido actualizar el producto',
                     footer: '<p>La referencia ya existe elige otra o dejala igual</p>'
                 })
             } else {
@@ -216,7 +216,6 @@ async function validarParaActualizar(item_n){
 
 async function Actualizar_producto(actualizar){
     objeto = JSON.stringify(actualizar);
-    alert(objeto)
     try {
         response = await fetch("http://"+url+"/api/supplements/update",{
             method : 'PUT',

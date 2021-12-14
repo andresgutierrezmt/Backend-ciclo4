@@ -19,7 +19,7 @@ header = `
                 <span id="UserMenu"></span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Perfil</a></li>
+                <li><a class="dropdown-item" id="perfilS" href="#">Perfil</a></li>
                 <li><a class="dropdown-item" id="cerrarS" href="#">Cerrar Sesion</a></li>
             </ul>
         </li>

@@ -23,6 +23,11 @@ function config() {
         localStorage.clear();
         document.location = "login.html"
     })
+
+    perfilS = document.querySelector("#perfilS");
+    perfilS.addEventListener('click', ()=>{
+        document.location="perfil.html";
+    });
 }
 
 function configA() {

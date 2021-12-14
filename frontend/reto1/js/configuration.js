@@ -32,10 +32,12 @@ async function Autenticar(usuario){
             document.querySelector("#spinner").style.display = 'none';
             alert("Usuario no registrado, solicite al administrador un correo valido y contraseña para ingresar o ingrese como administrador para agregar una cuenta")
         }else{
+            const response = await fetch("http://"+ url +"/api/user/"+res.id);
+            const usuario = await response.json();
             document.querySelector("#spinner").style.display = 'none';
-            localStorage.setItem("user",JSON.stringify(res));
-            localStorage.setItem("name",res.name);
-            localStorage.setItem("type", res.type);
+            localStorage.setItem("user",JSON.stringify(usuario));
+            localStorage.setItem("name",usuario.name);
+            localStorage.setItem("type", usuario.type);
             document.location = "bienvenido.html"
         }
     } catch (error) {
