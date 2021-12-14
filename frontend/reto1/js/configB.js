@@ -19,5 +19,7 @@ function mensaje(ms){
         ms.innerHTML = "bienvenido Administrador, recuerde que puede agregar nuevos miembros desde la pestaña (registrar miembro)"
     }else if(localStorage.getItem('type') == ASSESOR){
         ms.innerHTML = "bienvenido a deportive, eres Asesor:)"
+    }else if(localStorage.getItem('type') == COORDINADOR){
+        ms.innerHTML = "bienvenido a deportive, eres Coordinador:) procura mirar frecuentemente la pestaña 'Mis pedidos'"
     }
 }

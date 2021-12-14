@@ -17,7 +17,7 @@ function rellenar(){
     document.querySelector("#price").value = item.price;
     document.querySelector("#quantity").value = item.quantity;
     document.querySelector("#availability").value = item.availability;
-    document.querySelector("#image").value = item.image;
+    document.querySelector("#image").value = item.photography;
     document.querySelector("#description").value = item.description;
 }
 
@@ -32,7 +32,7 @@ function obtener_nuevo(){
             price : document.querySelector("#price").value,
             quantity: document.querySelector("#quantity").value,
             availability: document.querySelector("#availability").value,
-            image: document.querySelector("#image").value,
+            photography: document.querySelector("#image").value,
             description: document.querySelector("#description").value,
         }
     

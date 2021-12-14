@@ -38,7 +38,7 @@ function tabla(items){
                 <tbody>`;
     console.log(items);
     for (let i = 0; i < items.length; i++) {
-        if(items[i].type != "ADMIN"){
+        if(items[i].type != ADMIN){
             tabla += `
             <tr>
                 <td>${items[i].identification}</td>
@@ -78,7 +78,7 @@ async function Eliminar(id){
 
 async function perfil(id){
     try {
-        response = await fetch("http://" + url +"/api/user/get/"+id)
+        response = await fetch("http://" + url +"/api/user/"+id)
         responsejson = await response.json();
         console.log(responsejson);
         mostrar(responsejson);

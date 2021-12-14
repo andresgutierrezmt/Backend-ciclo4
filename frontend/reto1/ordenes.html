@@ -36,6 +36,12 @@
         <div class="container">
             <h1>Ordenes en tu zona</h1>
             <p>Aca puedes crear, ver y eliminar ordenes para tus coordinadores de zona</p>
+            <p></p>
+            <div class="alert alert-primary alert-dismissible w-75 mx-auto">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Recuerda!</strong> la cantidad que hay disponible del producto se coloca de forma automatica en
+                el campo cantidad. No vayas a colocar una mayor!
+            </div>
         </div>
     </div>
     <div class="m-5 row">
@@ -45,33 +51,55 @@
                 <div class="container" id="container_form">
                     <form action="#" onsubmit='return false'>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input name="email" type="email" class="form-control" id="email">
+                            <label for="referencia">Elegir producto</label>
+                            <select id="referencia-container" name="referencia" class="form-control"></select>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input name="email" type="email" class="form-control" id="email">
+                            <label for="cantidad">cantidad</label>
+                            <input name="cantidad" type="number" class="form-control" id="cantidad">
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input name="email" type="email" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input name="email" type="email" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input name="email" type="email" class="form-control" id="email">
-                        </div>
-                        <button id="boton" type="submit" class="btn btn-primary mt-3 w-100">Submit</button>
+                        <button id="boton" type="submit" class="btn btn-primary mt-3 w-100">añadir</button>
                     </form>
                 </div>
             </div>
+            <div class="container border rounded mt-2" id="contenedor2">
+                <h5>imagen del producto</h5>
+                <div class="container d-flex justify-content-center" id="img-container"></div>
+            </div>
         </div>
-        <div class="col-sm-9 border rounded">
-            <div class="container text-center">
-                <h4>Ordenes</h4>
+        <div class="col-sm-3">
+            <div class="container text-center border rounded p-4">
+                <h4>Mi orden</h4>
+                <div class="form-group mb-2">
+                    <label for="dateAssigment">Fecha de asignacion orden</label>
+                    <input name="dateAssigment" type="Date" class="form-control" id="dateAssigment">
+                </div>
+                <label for="contenedor-ordenes">productos selecionados</label>
+                <div class="container" id="contenedor-ordenes"></div>
+                <button id="boton2" type="submit" class="btn btn-primary mt-3 w-100">generar Orden</button>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="container text-center border rounded">
+                <h4>Tabla Ordenes</h4>
+                <div class="container table-responsive" id="tabla-container"></div>
+                <!-- Modal -->
+                <div class="modal fade" id="informacion" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"><strong>Informacion de la orden</strong></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modal-body-edit"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

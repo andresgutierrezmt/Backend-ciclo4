@@ -16,7 +16,7 @@ function verificar(){
 }
 
 function validarRegistro(newUser){
-    if(newUser.id != "" && newUser.identificacion != "" && newUser.nombre != "" && newUser.email != "" && newUser.password != "" && newUser.password_conf != "" && newUser.direccion != "" && newUser.celular != "" && newUser.zona != "" && newUser.tipo_de_cuenta != ""){
+    if(newUser.identificacion != "" && newUser.nombre != "" && newUser.email != "" && newUser.password != "" && newUser.password_conf != "" && newUser.direccion != "" && newUser.celular != "" && newUser.zona != "" && newUser.tipo_de_cuenta != ""){
         if(newUser.password == newUser.password_conf){
             if (newUser.terminos) {
                 autenticacion(newUser)
@@ -52,7 +52,6 @@ async function autenticacion(newUser){
         alert("El email ya esta en uso")
     } else {
         let registrar = {
-            id: newUser.id,
             identification: newUser.identificacion,
             name: newUser.nombre,
             address: newUser.direccion,

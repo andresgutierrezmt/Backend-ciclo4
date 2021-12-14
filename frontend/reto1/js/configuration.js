@@ -33,6 +33,7 @@ async function Autenticar(usuario){
             alert("Usuario no registrado, solicite al administrador un correo valido y contraseña para ingresar o ingrese como administrador para agregar una cuenta")
         }else{
             document.querySelector("#spinner").style.display = 'none';
+            localStorage.setItem("user",JSON.stringify(res));
             localStorage.setItem("name",res.name);
             localStorage.setItem("type", res.type);
             document.location = "bienvenido.html"

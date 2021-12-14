@@ -57,10 +57,10 @@ public class SupplementsService {
                 if (accesory.getDescription() != null) {
                     accesoryDb.get().setDescription(accesory.getDescription());
                 }
-                if (accesory.getPrice() != 0.0) {
+                if (accesory.getPrice() >= 0.0) {
                     accesoryDb.get().setPrice(accesory.getPrice());
                 }
-                if (accesory.getQuantity() != 0) {
+                if (accesory.getQuantity() >= 0) {
                     accesoryDb.get().setQuantity(accesory.getQuantity());
                 }
                 if (accesory.getPhotography() != null) {

@@ -20,7 +20,6 @@ header = `
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="#">Perfil</a></li>
-                <li><a class="dropdown-item" href="#">Mi carrito</a></li>
                 <li><a class="dropdown-item" id="cerrarS" href="#">Cerrar Sesion</a></li>
             </ul>
         </li>

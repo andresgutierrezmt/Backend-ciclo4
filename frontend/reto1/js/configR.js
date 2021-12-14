@@ -13,7 +13,6 @@ function config(){
     boton = document.querySelector("#boton");
     boton.addEventListener('click',()=>{
         let newUser = {
-            id: document.querySelector("#idr").value,
             identificacion: document.querySelector("#identificacion").value,
             nombre: document.querySelector("#nombre").value,
             email: document.querySelector("#email").value,
@@ -39,9 +38,24 @@ async function registrarUsuario(registrar){
             body: JSON.stringify(registrar)
         });
         document.location = "bienvenido.html"
-        alert("registro de miembro nuevo satisfactorio");
+        Swal.fire({
+            title: 'Registro',
+            text: "usuario registrado correctamente",
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'aceptar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                document.location = "miembros.html"
+            }
+            });
     } catch (error) {
         console.log(error);
-        alert("Ha ocurrido un error en el servidor :(")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se registro el usuario',
+            footer: '<p>Ocurrio un error inesperado del servidor :(</p>'
+        })
     }
 }

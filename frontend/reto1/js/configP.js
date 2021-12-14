@@ -53,7 +53,7 @@ function tablaProductos(items){
                 <td>${items[i].availability}</td>
                 <td>${items[i].quantity}</td>
                 <td>${items[i].price}</td>
-                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="productoVer('${btoa(strobj)/* btoa convierte a base 64 un JSON */}');">perfil</button></td>
+                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="productoVer('${btoa(strobj)/* btoa convierte a base 64 un JSON */}');">ver</button></td>
                 <td><button class="btn btn-danger" onclick="EliminarP('${btoa(strobj)}');">Eliminar</button></td>
             </tr>
             `;
@@ -67,27 +67,51 @@ function tablaProductos(items){
 
 async function EliminarP(reference){
     const item = JSON.parse(atob(reference));
+    let flag = 0;
+
     try {
-        response = await fetch("http://" + url +"/api/supplements/"+item.reference,{
+        let response = await fetch("http://" + url + "/api/order/status/Pendiente")
+        let ordenes = await response.json();
+        for (let i = 0; i < ordenes.length; i++) {
+            let OrdenAnalizar = ordenes[i];
+            console.log(`OrdenAnalizar`,OrdenAnalizar);
+            for (const productos in OrdenAnalizar.quantities) {
+                console.log(`productos`,productos);
+                if(item.reference == productos){
+                    flag = 1;
+                }
+            }
+        }
+        console.log("flag",flag);
+        if (flag == 0) {
+            response = await fetch("http://" + url +"/api/supplements/"+item.reference,{
             method: 'DELETE',
             headers: {
                 'content-Type':'application/json'
             },
-        });
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Se ha eliminado correctamente',
-            showConfirmButton: false,
-            timer: 3500
-        });
-        configProductos();
+            });
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Se ha eliminado correctamente',
+                showConfirmButton: false,
+                timer: 3500
+            });
+            configProductos();
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Error al eliminar',
+                footer: '<p>Hay items asociados a este producto, elimine las ordenes pendientes asociadas a el producto</p>'
+            })
+        }
     } catch (error) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Error al obtener datos de la tabla',
-            footer: '<p>hubo un error en el servidor (' +error+ ')</p>'
+            text: 'Error al eliminar',
+            footer: '<p>hubo un error en el servidor</p>'
         })
         console.log(error);
     }

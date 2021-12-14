@@ -28,6 +28,6 @@ public class Order implements Serializable {
     private Date registerDay;
     private String status;
     private User salesMan;
-    private Map<String, Supplements> products;
+    private Map<String,Supplements> products;
     private Map<String, Integer> quantities;
 }
