@@ -29,12 +29,10 @@ public class SupplementsService {
         if (accesory.getReference() == null) {
             return accesory;
         }
-
         else {
             if (supplement.isEmpty()) {
                 return repository.create(accesory);
             }
-
             else {
                 return accesory;
             }

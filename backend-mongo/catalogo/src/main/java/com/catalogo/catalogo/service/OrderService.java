@@ -3,7 +3,6 @@ package com.catalogo.catalogo.service;
 import com.catalogo.catalogo.Repository.OrderRepository;
 import com.catalogo.catalogo.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.spel.ast.OpAnd;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -80,6 +79,18 @@ public class OrderService {
         else{
             return false;
         }
+    }
+
+    public List<Order> ordersSalesManByID(int id){
+        return repository.ordersSalesManByID(id);
+    }
+
+    public List<Order> ordersSalesManByState(String state, Integer id){
+        return repository.ordersSalesManByState(state, id);
+    }
+
+    public List<Order> ordersSalesManByDate(String dateStr, Integer id) {
+        return repository.ordersSalesManByDate(dateStr,id);
     }
 
 }

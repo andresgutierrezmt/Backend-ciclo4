@@ -53,4 +53,19 @@ public class OrderController {
     public boolean delete(@PathVariable("id") int id) {
         return Service.delete(id);
     }
+
+    @GetMapping("/salesman/{id}")
+    public List<Order> ordersSalesManByID(@PathVariable("id") Integer id){
+        return Service.ordersSalesManByID(id);
+    }
+
+    @GetMapping("/state/{state}/{id}")
+    public List<Order> ordersSalesManByState(@PathVariable("state") String state, @PathVariable("id") Integer id){
+        return Service.ordersSalesManByState(state, id);
+    }
+
+    @GetMapping("/date/{date}/{id}")
+    public List<Order> ordersSalesManByDate(@PathVariable("date") String dateStr, @PathVariable("id") Integer id) {
+        return Service.ordersSalesManByDate(dateStr,id);
+    }
 }
