@@ -30,6 +30,10 @@ public class UserService {
         return repository.ExistenciaEmail(email);
     }
 
+    public List<User> findByBirthdayMonth(String month){
+        return repository.findByBirthdayMonth(month);
+    }
+
     public User Autenticar (String email, String password){
         Optional<User> user = repository.AutenticarUsuario(email, password);
         if(user.isEmpty()){

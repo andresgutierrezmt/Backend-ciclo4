@@ -1,8 +1,10 @@
 package com.catalogo.catalogo.Repository;
 
 import com.catalogo.catalogo.CrudRepository.UserCrudRepository;
+import com.catalogo.catalogo.model.Supplements;
 import com.catalogo.catalogo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,6 +29,10 @@ public class UserRepository {
 
     public Optional<User> AutenticarUsuario(String email, String password){
         return crud.findByEmailAndPassword(email,password);
+    }
+
+    public List<User> findByBirthdayMonth(String month){
+        return (List<User>) crud.findByBirthdayMonth(month);
     }
 
     public boolean ExistenciaEmail(String email){

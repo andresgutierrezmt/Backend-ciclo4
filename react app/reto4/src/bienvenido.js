@@ -10,7 +10,8 @@ import Header from "./components/header";
 const Bienvenido = () => {
     const validLogin = () => {
         if (localStorage.getItem("id") == null) {
-            window.location = "bienvenido";
+            localStorage.clear();
+            window.location = "/";
         }
     }
     validLogin()

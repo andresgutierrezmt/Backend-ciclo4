@@ -21,6 +21,12 @@ public class UserController {
         return service.getAll();
     }
 
+    @GetMapping("/birthday/{month}")
+    public List<User> findByBirthdayMonth(@PathVariable("month") String month){
+        return service.findByBirthdayMonth(month);
+    }
+
+
     @GetMapping("/{id}")
     public Optional<User> getUser(@PathVariable("id") int id){
         return service.getUser(id);

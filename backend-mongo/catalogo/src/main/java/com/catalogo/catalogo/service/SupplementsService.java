@@ -24,6 +24,14 @@ public class SupplementsService {
         return repository.getSupplement(reference);
     }
 
+    public List<Supplements> findByCharacterString(String description){
+        return repository.findByCharacterString(description);
+    }
+
+    public List<Supplements> findByPrice(double price){
+        return repository.findByPrice(price);
+    }
+
     public Supplements create(Supplements accesory) {
         Optional<Supplements> supplement = repository.getSupplement(accesory.getReference());
         if (accesory.getReference() == null) {

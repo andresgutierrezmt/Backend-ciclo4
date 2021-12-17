@@ -35,6 +35,7 @@ const Login = () => {
     }
 
     const enviarDatos = (event) => {
+        debugger
         event.preventDefault();
         ValidarEmail();
     }
@@ -46,10 +47,10 @@ const Login = () => {
             const response = await fetch("http://" + url + "/api/user/" + user.email + "/" + user.pwd);
             const promise = await response.json();
             console.log(`promise`, promise);
-            localStorage.setItem("user", JSON.stringify(promise));
-            localStorage.setItem("id", promise.type)
-            localStorage.setItem("nombre", promise.name)
             if (promise.name != null) {
+                localStorage.setItem("user", JSON.stringify(promise));
+                localStorage.setItem("id", promise.type)
+                localStorage.setItem("nombre", promise.name)
                 Swal.fire({
                     position: 'center ',
                     icon: 'success',

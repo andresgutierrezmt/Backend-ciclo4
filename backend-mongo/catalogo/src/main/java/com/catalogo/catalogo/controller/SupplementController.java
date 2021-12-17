@@ -31,6 +31,16 @@ public class SupplementController {
         return service.getClothe(reference);
     }
 
+    @GetMapping("/description/{description}")
+    public List<Supplements> findByCharacterString(@PathVariable("description") String description){
+        return service.findByCharacterString(description);
+    }
+
+    @GetMapping("/price/{price}")
+    public List<Supplements> findByPrice(@PathVariable("price") double price){
+        return service.findByPrice(price);
+    }
+
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public Supplements create(@RequestBody Supplements gadget) {

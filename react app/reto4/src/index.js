@@ -15,6 +15,7 @@ import Login from './login';
 import Perfil from './Perfil';
 import Ordenes from './ordenesA';
 import Miembros from './miembros';
+import Catalogo from './catalogo';
 
 const DeportiveApp = () => {
     /* const {ADMIN, ASSESOR, COORDINADOR} = Perfiles; */
@@ -27,6 +28,7 @@ const DeportiveApp = () => {
                 <Route path="/perfil" element={<Perfil/>}/>
                 <Route path="/ordenes" element={<Ordenes/>} />
                 <Route path="/miembros" element={<Miembros/>} />
+                <Route path="/catalogo" element={<Catalogo/>}/>
             </Routes>
         </Router>
     );

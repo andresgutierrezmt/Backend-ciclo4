@@ -22,7 +22,7 @@ const CrearA = () => {
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li><a className="dropdown-item" href="registroP.html">Nuevo producto</a></li>
                     <li><a className="dropdown-item" href="productos.html">productos</a></li>
-                    <li><a className="dropdown-item" href="catalogo.html">catalogo</a></li>
+                    <li><a className="dropdown-item" href="catalogo">catalogo</a></li>
                 </ul>
             </li>
         </>

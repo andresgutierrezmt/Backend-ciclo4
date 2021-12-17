@@ -9,6 +9,8 @@ const Datos = (userP) => {
     return (
         <>
             <h5><strong>Nombre</strong></h5>
+            <p id="nombre">{user.id}</p>
+            <h5><strong>Nombre</strong></h5>
             <p id="nombre">{user.name}</p>
             <h5><strong>Identificacion</strong></h5>
             <p id="identificacion">{user.identification}</p>

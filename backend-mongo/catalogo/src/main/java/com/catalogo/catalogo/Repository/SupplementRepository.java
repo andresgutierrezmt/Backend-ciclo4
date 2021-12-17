@@ -42,4 +42,12 @@ public class SupplementRepository {
     public void delete(Supplements supplements){
         crud.delete(supplements);
     }
+
+    public List<Supplements> findByCharacterString(String description){
+        return (List<Supplements>) crud.findByCharacterString(description);
+    }
+
+    public List<Supplements> findByPrice(double price){
+        return (List<Supplements>) crud.findByPrice(price);
+    }
 }
