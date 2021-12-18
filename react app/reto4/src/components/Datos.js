@@ -1,9 +1,9 @@
 /* Node modules */
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Datos = (userP) => {
     
+    console.log(`userP recibido`,userP);
     const { user } = userP;
 
     return (
@@ -18,6 +18,8 @@ const Datos = (userP) => {
             <p id="tipo">{user.type}</p>
             <h5><strong>Cumpleaños</strong></h5>
             <p id="cumpleanos">{user.birthtDay}</p>
+            <h5><strong>Mes cumpleaños</strong></h5>
+            <p id="cumpleanos">{user.monthBirthtDay}</p>
             <h5><strong>Direccion</strong></h5>
             <p id="direccion">{user.address}</p>
             <h5><strong>Celular</strong></h5>
@@ -28,10 +30,6 @@ const Datos = (userP) => {
             <p id="zona">{user.zone}</p>
         </>
     );
-}
-
-Datos.propTypes = {
-    user: PropTypes.object.isRequired,
 }
 
 export default Datos;

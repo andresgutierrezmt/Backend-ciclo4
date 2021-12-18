@@ -38,7 +38,7 @@ const MostrarOrden = ({ order }) => {
             {arrTempi && arrTempi.length > 0 && arrTempi.map((producto)=>(
                 <div className="container d-flex justify-content-between border rounded mb-3">
                     <p>{producto.brand + " " + producto.reference + " x " + producto.quantities}</p>
-                    <img src={producto.photography}/>
+                    <img src={producto.photography} width="100px"/>
                 </div>
             )) 
             }

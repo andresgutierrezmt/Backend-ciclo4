@@ -7,6 +7,9 @@ import { url } from "../../config/config"
 import MostrarOrden from './MostrarOrden';
 
 const OrderTable = () => {
+
+    const[noElement, setNoElement] = useState(false)
+
     const [POrder, setPOrder] = useState(0);
     const [orders, setOrders] = useState({});
     const [filtro, setFiltro] = useState("ALL");
@@ -25,6 +28,7 @@ const OrderTable = () => {
             const response = await fetch(direccion);
             const ordenes = await response.json();
             setOrders(ordenes);
+            ordenes == "" ? setNoElement( true ) : setNoElement( false );
             console.log("R", ordenes);
         } catch (error) {
             console.log(`error`, error);
@@ -101,7 +105,14 @@ const OrderTable = () => {
                     </div>
                 </div>
             </div>
-            <table className="table table-responsive text-center table-hover shadow-sm p-3 mb-5 bg-body rounded mt-3">
+            { noElement ? 
+                <div className="container text-center mt-3 border w-100 text-secondary shadow-sm p-3 mb-5 bg-body rounded">
+                    <h1>No hay datos que mostrar</h1>
+                </div>
+                
+                : 
+                
+                <table className="table table-responsive text-center table-hover shadow-sm p-3 mb-5 bg-body rounded mt-3">
                 <thead>
                     <tr>
                         <th>id</th>
@@ -114,7 +125,7 @@ const OrderTable = () => {
                 </thead>
                 <tbody>
                     {orders && orders.length > 0 && orders.map(order => (
-                        <tr>
+                        <tr key={order.id}>
                             <td>{order.id}</td>
                             <td>{order.registerDay}</td>
                             <td>{order.salesMan.name}</td>
@@ -125,7 +136,7 @@ const OrderTable = () => {
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table> }
             <div className="modal fade" id="infoModal" tabIndex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -137,8 +148,7 @@ const OrderTable = () => {
                             < MostrarOrden order={POrder} />
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
+                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

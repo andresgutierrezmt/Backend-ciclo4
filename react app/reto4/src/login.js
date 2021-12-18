@@ -35,7 +35,6 @@ const Login = () => {
     }
 
     const enviarDatos = (event) => {
-        debugger
         event.preventDefault();
         ValidarEmail();
     }

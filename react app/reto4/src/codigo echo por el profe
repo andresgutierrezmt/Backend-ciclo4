@@ -1,0 +1,109 @@
+import React from 'react'
+import { useEffect, useState } from 'react';
+import '../css/registro.css'
+
+const NuevoMiembro = ({sendData}) => {
+    const [userId] = useState(1);
+
+    const [userE,setUserE] = useState( {
+        email: "",
+        password : "",
+        name : "",
+        address: "",
+        cellPhone : "",
+        birthday: "",
+        birthdayMonth : "",
+        zona: "",
+        type: "",
+    } )
+
+    const Handler = ({ target }) => {
+        const handler = {
+            ...userE,
+            [target.name] : target.value
+        };
+        setUserE( handler );
+    }
+
+    const getUser = async () => {
+        try {
+            const url =`http://localhost:8080/api/user/${userId}`;
+            let response = await fetch(url);
+            response = await response.json();
+            setUserE(response)
+            console.log('response',response);
+        } catch (error) {
+            console.log(`error`, error);            
+        }
+    }
+
+    useEffect(() => {
+        console.log(`sendData`,sendData);
+        getUser()
+    },[sendData])
+
+    console.log(`userE`,userE);
+
+    const saveChanges=async(event)=>{
+    event.preventDefault();
+    try {
+        const opt={
+            method:'PUT',
+            body:JSON.stringify(userE),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        }
+        const url =`http://localhost:8080/api/user/update`;
+        let response = await fetch(url,opt);
+        response = await response.json();
+        setUserE(response)
+        console.log('response',response);
+    } catch (error) {
+        console.log(`error`, error);            
+    }
+
+    }
+
+    return (
+        <>
+            <form class=" row was-validated" onSubmit={saveChanges}>
+                <div class="col border rounded mx-1 p-3">
+                    <div className="container text-center">
+                        <h2>Datos de ingreso</h2>
+                        <input type="text" class="form-control entrada" placeholder="Correo electronico" name="email" onChange={Handler} required defaultValue={userE.email}/>
+                        <input type="password" class="form-control entrada" placeholder="Contraseña" name="password" onChange={Handler} required />
+                    </div>
+                </div>
+                <div class="col border rounded mx-1 p-3">
+                    <div className="container text-center ">
+                        <h2>Datos personales</h2>
+                        <input className="form-control entrada" name="name" type="text" placeholder='Nombre' onChange={Handler} required defaultValue={userE.name}/>
+                        <input type="text" class="form-control entrada" placeholder="ingrese su direccion de residencia" name="address" onChange={Handler} required />
+                        <input type="text" class="form-control entrada" placeholder="ingrese celular" name="cellPhone" onChange={Handler} required />
+                        <input type="date" class="form-control entrada" placeholder="ingrese fecha de cumpleanios" name="birthday" onChange={Handler} required />
+                        <input type="text" class="form-control entrada" placeholder="ingrese mes de cumpleanios" name="birthdayMonth" onChange={Handler} required />
+                    </div>
+                </div>
+                <div class="col border rounded mx-1 p-3">
+                    <div className="container text-center">
+                        <h2>Datos del cargo</h2>
+                    </div>
+                    <input type="text" class="form-control entrada" placeholder="ingrese zona de trabajo" name="zona" onChange={Handler} required />
+                    <select name="type" class="form-control entrada">
+                        <option value="" selected>selecione un tipo de cuenta</option>
+                        <option value="COORD">Coordinador</option>
+                        <option value="ASER">assesor</option>
+                    </select>
+                </div>
+                <div className="container d-flex justify-content-center mt-3">
+                    <button type="button" className="btn btn-secondary mx-2" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" className="btn btn-primary mx-2" onClick="">guardar</button>
+                </div>
+            </form>
+
+        </>
+    );
+}
+
+export default NuevoMiembro

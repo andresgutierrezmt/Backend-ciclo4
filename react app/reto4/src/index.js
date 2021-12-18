@@ -16,6 +16,7 @@ import Perfil from './Perfil';
 import Ordenes from './ordenesA';
 import Miembros from './miembros';
 import Catalogo from './catalogo';
+import Birthday from './cumpleaños';
 
 const DeportiveApp = () => {
     /* const {ADMIN, ASSESOR, COORDINADOR} = Perfiles; */
@@ -29,6 +30,7 @@ const DeportiveApp = () => {
                 <Route path="/ordenes" element={<Ordenes/>} />
                 <Route path="/miembros" element={<Miembros/>} />
                 <Route path="/catalogo" element={<Catalogo/>}/>
+                <Route path="/birthday" element={<Birthday/>}/>
             </Routes>
         </Router>
     );

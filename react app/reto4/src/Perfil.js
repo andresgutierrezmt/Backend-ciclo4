@@ -1,5 +1,6 @@
 import React from 'react';
 import Datos from './components/Datos';
+import { useEffect, useState } from 'react';
 import Jumbotron from './components/jumbotron';
 import Header from "./components/header";
 
@@ -9,7 +10,13 @@ const Perfil = ()=>{
         window.location = "login";
     }
 
-    const userP = JSON.parse(localStorage.getItem("user"))
+    const [userP,setUserP] = useState( {} )
+
+    useEffect(()=>{
+        setUserP(JSON.parse(localStorage.getItem("user")));
+    },[])
+    
+    console.log(`userP antes de enviar`,userP);
 
     return(
         <>
