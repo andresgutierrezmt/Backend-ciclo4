@@ -94,8 +94,8 @@ const BirthdayTable = () => {
                         <th>id</th>
                         <th>nombre</th>
                         <th>correo</th>
-                        <th>identificacion</th>
-                        <th>cuenta</th>
+                        <th>fecha cumpleaños</th>
+                        <th>mes del cumpleaños</th>
                         <th colSpan="2">Acciones</th>
                     </tr>
                 </thead>
@@ -105,8 +105,8 @@ const BirthdayTable = () => {
                             <td>{user.id}</td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{user.identification}</td>
-                            <td>{user.type}</td>
+                            <td>{user.birthtDay}</td>
+                            <td>{user.monthBirthtDay}</td>
                             <td><button className="btn btn-info" data-bs-toggle="modal" data-bs-target="#infoModal" onClick={()=>{setPUserBir( user )}}>Detalles</button></td>
                             <td><button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal" onClick={()=>{setPUserBir( user )}} >actualizar</button></td>
                         </tr>
